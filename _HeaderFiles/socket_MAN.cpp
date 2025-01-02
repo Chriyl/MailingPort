@@ -32,6 +32,13 @@ void SOCKETMAN::write_sockaddr(struct sockaddr_in* dest_sockaddr, short int port
     dest_sockaddr->sin_port = htons(port);
 }
 
+void SOCKETMAN::write_addrinfo(struct addrinfo* dest_addrinfo, short int port )
+{
+    dest_addrinfo->ai_family = AF_UNSPEC;
+    dest_addrinfo->ai_socktype = SOCK_STREAM;
+    dest_addrinfo->ai_protocol = IPPROTO_TCP;
+}
+
 bool SOCKETMAN::bind_server(SOCKET sock, struct sockaddr_in* addr, int size)
 {
     int bindValue = bind(sock, (struct sockaddr*) addr, size);

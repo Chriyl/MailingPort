@@ -24,3 +24,7 @@ add_executable(server
 )
 # Linka la libreria ws2_32 per il server
 target_link_libraries(server ws2_32)
+target_link_libraries(client Ws2_32 )
+target_link_libraries(client Mswsock )
+target_link_libraries(client AdvApi32 )
+
