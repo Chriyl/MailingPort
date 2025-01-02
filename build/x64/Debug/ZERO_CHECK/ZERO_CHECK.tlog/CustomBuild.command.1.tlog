@@ -1,0 +1,10 @@
+^C:\USERS\CHRIS\DESKTOP\MAILINGPORT\BUILD\CMAKEFILES\648F883D5CEA2420F1E444A88003C7BC\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/chris/Desktop/MailingPort -BC:/Users/chris/Desktop/MailingPort/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/chris/Desktop/MailingPort/build/mailingProtocol.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
