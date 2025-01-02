@@ -12,20 +12,20 @@ int main()
 {
     WSADATA wsa;
 
-    if (!init_wsa(&wsa)) {
+    if (!SOCKETMAN::init_wsa(&wsa)) {
         printf("[-] Errore con WSA\n");
         return -1;
     }
 
-    SOCKET sock = init_sock();
+    SOCKET sock = SOCKETMAN::init_sock();
     if (sock == INVALID_SOCKET) {
         return -1;
     }
 
     sockaddr_in server_addr;
-    write_sockaddr(&server_addr, (short int)PORT);
+    SOCKETMAN::write_sockaddr(&server_addr, (short int)PORT);
 
-    if (!bind_server(sock, &server_addr, sizeof(server_addr))) {
+    if (!SOCKETMAN::bind_server(sock, &server_addr, sizeof(server_addr))) {
         closesocket(sock);
         WSACleanup();
         return -1;
@@ -33,9 +33,9 @@ int main()
 
     printf("[+] Server in ascolto sulla porta %d\n", PORT);
     
-    // Continuare con la logica del server, come l'ascolto e l'accettazione delle connessioni
 
-    // Chiusura del socket quando finito
+
+   // CHIUSURA SOCK
     closesocket(sock);
     WSACleanup();
     
