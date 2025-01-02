@@ -22,8 +22,10 @@ add_executable(server
     Server/server.cpp
     _HeaderFiles/socket_MAN.cpp
 )
-# Linka la libreria ws2_32 per il server
+# Linka le lib per il server
 target_link_libraries(server ws2_32)
+
+# Linka le lib per il client
 target_link_libraries(client Ws2_32 )
 target_link_libraries(client Mswsock )
 target_link_libraries(client AdvApi32 )

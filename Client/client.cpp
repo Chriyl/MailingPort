@@ -23,8 +23,8 @@ int main()
         return -1;
     }
 
-    sockaddr_in server_addr;
-    SOCKETMAN::write_addrinfo(&hints, (short int)PORT);
+
+    SOCKETMAN::write_addrinfo(&hints);
 
     return 0;
 }
