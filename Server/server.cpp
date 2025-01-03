@@ -45,7 +45,7 @@ int main()
   
    // CHIUSURA SOCK
     
-      closesocket(sock);
+    closesocket(sock);
     WSACleanup();
     
     return 0;

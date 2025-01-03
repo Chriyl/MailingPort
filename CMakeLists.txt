@@ -5,7 +5,7 @@ project(mailingProtocol)
 # Imposta standard C++
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin) # per buttare i file.exe in una cartella fuori dal build
 
 # Percorso per gli header
 include_directories(${CMAKE_SOURCE_DIR}/_HeaderFiles)
