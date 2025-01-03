@@ -13,8 +13,9 @@ static class SOCKETMAN {
     static SOCKET init_sock();
     static bool init_wsa(WSADATA*);
     static void write_sockaddr(struct sockaddr_in*, short int );
-    static void write_addrinfo(struct addrinfo* );
+    static void write_sockaddr_client(short int, const char*, sockaddr_in*);
     static bool bind_server(SOCKET, struct sockaddr_in*, int);
+    static bool connect_client(SOCKET, struct sockaddr_in*, int);
 };
 
 

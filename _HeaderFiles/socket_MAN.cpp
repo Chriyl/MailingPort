@@ -1,5 +1,6 @@
 #include "socket_MAN.hh"
-
+#include <string>
+using namespace std;
 
 bool SOCKETMAN::init_wsa(WSADATA* wsa)
 {
@@ -32,11 +33,19 @@ void SOCKETMAN::write_sockaddr(struct sockaddr_in* dest_sockaddr, short int port
     dest_sockaddr->sin_port = htons(port);
 }
 
-void SOCKETMAN::write_addrinfo(struct addrinfo* dest_addrinfo )
+void SOCKETMAN::write_sockaddr_client(short int port, const char* ip, sockaddr_in* dest_addr)
 {
+    /*
+    
     dest_addrinfo->ai_family = AF_UNSPEC;
     dest_addrinfo->ai_socktype = SOCK_STREAM;
     dest_addrinfo->ai_protocol = IPPROTO_TCP;
+    */
+   
+   dest_addr->sin_family = AF_INET;
+   dest_addr->sin_port = port;
+   dest_addr->sin_addr.s_addr = inet_addr(ip);
+    
 }
 
 bool SOCKETMAN::bind_server(SOCKET sock, struct sockaddr_in* addr, int size)
@@ -51,4 +60,16 @@ bool SOCKETMAN::bind_server(SOCKET sock, struct sockaddr_in* addr, int size)
     printf("[+] Bind riuscito\n");
     return true;
 }
+
+bool SOCKETMAN::connect_client(SOCKET sock, struct sockaddr_in* src_sockaddr, int size)
+{
+    int result = connect(sock, (struct sockaddr*) &src_sockaddr, sizeof(src_sockaddr));
+    if(result == SOCKET_ERROR) {return false;} else {return true;}
+}
+
+bool SOCKETMAN::server_listen(SOCKET sock, int connections){
+    int result = listen(sock, connections);
+    if(result == SOCKET_ERROR) {return false;} else {return true;}
+}
+
 
