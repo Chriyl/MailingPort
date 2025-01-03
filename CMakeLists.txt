@@ -8,12 +8,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin) # per buttare i file.exe in una cartella fuori dal build
 
 # Percorso per gli header
-include_directories(${CMAKE_SOURCE_DIR}/_HeaderFiles)
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Aggiungi eseguibile per il Client
 add_executable(client
     Client/client.cpp
-    _HeaderFiles/socket_MAN.cpp
+    include/socket_MAN.cpp
 )
 # Linka la libreria ws2_32 per il client
 target_link_libraries(client ws2_32)
@@ -21,7 +21,7 @@ target_link_libraries(client ws2_32)
 # Aggiungi eseguibile per il Server
 add_executable(server
     Server/server.cpp
-    _HeaderFiles/socket_MAN.cpp
+    include/socket_MAN.cpp
 )
 # Linka le lib per il server
 target_link_libraries(server ws2_32)
