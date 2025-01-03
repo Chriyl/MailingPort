@@ -61,15 +61,34 @@ bool SOCKETMAN::bind_server(SOCKET sock, struct sockaddr_in* addr, int size)
     return true;
 }
 
-bool SOCKETMAN::connect_client(SOCKET sock, struct sockaddr_in* src_sockaddr, int size)
-{
-    int result = connect(sock, (struct sockaddr*) &src_sockaddr, sizeof(src_sockaddr));
-    if(result == SOCKET_ERROR) {return false;} else {return true;}
+bool SOCKETMAN::connect_client(SOCKET sock, struct sockaddr_in* src_sockaddr, int size) {
+    int result = connect(sock, (struct sockaddr*)src_sockaddr, size); // Passa il puntatore diretto
+    if (result == SOCKET_ERROR) {
+        printf("[-] Errore in connect: %d\n", WSAGetLastError());
+        return false;
+    }
+
+    printf("[+] Connessione riuscita\n");
+    return true;
 }
+
 
 bool SOCKETMAN::server_listen(SOCKET sock, int connections){
     int result = listen(sock, connections);
     if(result == SOCKET_ERROR) {return false;} else {return true;}
+}
+
+bool SOCKETMAN::server_accept(SOCKET sock, sockaddr_in* addr) {
+    int size = sizeof(sockaddr_in); // Dimensione corretta della struttura
+    SOCKET client_sock = accept(sock, (struct sockaddr*)addr, &size); // Passa il puntatore corretto e la dimensione
+    if (client_sock == INVALID_SOCKET) {
+        printf("[-] Errore in accept: %d\n", WSAGetLastError());
+        return false;
+    }
+
+    // Se necessario, puoi salvare o gestire il socket del client connesso
+    printf("[+] Connessione accettata\n");
+    return true;
 }
 
 

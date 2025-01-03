@@ -16,6 +16,8 @@ static class SOCKETMAN {
     static void write_sockaddr_client(short int, const char*, sockaddr_in*);
     static bool bind_server(SOCKET, struct sockaddr_in*, int);
     static bool connect_client(SOCKET, struct sockaddr_in*, int);
+    static bool server_listen(SOCKET, int);
+    static bool server_accept(SOCKET, sockaddr_in* );
 };
 
 
