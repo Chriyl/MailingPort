@@ -1,18 +1,17 @@
 #include "../include/socket_MAN.hh"
 #include <stdio.h>
 #include <winsock2.h>
-#include <vector>
-#include <string>
-#include <filesystem>
 #pragma comment(lib, "ws2_32.lib")
 
 #define PORT 22222
+
 
 int main()
 {
     WSADATA wsa;
     sockaddr_in server_addr, client_addr;
     SOCKETMAN::write_sockaddr(&server_addr, (short int)PORT);
+    
 
     if (!SOCKETMAN::init_wsa(&wsa)) {
         printf("[-] Errore con WSA\n");
@@ -43,7 +42,10 @@ int main()
     }
         
   
-   // CHIUSURA SOCK
+    while (true)
+    {
+
+    }
     
     closesocket(sock);
     WSACleanup();
