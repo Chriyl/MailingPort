@@ -22,6 +22,7 @@ target_link_libraries(client ws2_32)
 add_executable(server
     Server/server.cpp
     include/socket_MAN.cpp
+    include/profile_MAN.cpp
 )
 # Linka le lib per il server
 target_link_libraries(server ws2_32)

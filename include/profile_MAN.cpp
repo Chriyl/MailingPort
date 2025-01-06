@@ -4,6 +4,7 @@
 #include <string>
 #include <chrono>
 #include <sstream>
+#include <filesystem>
 #include <iomanip>
 
 using namespace std;
@@ -58,3 +59,22 @@ void Profile::add_message(Message* msg)
     this->MessageRepo.push_back(*msg);
 }
 
+int Profile::create_profile_folder() {
+    try {
+        // Construct the folder path using email and name
+        string folder_path = "Profiles/" + this->email + "_" + this->nome;
+
+        // Create the directory using filesystem
+        if (filesystem::create_directories(folder_path)) {
+            cout << "Profile folder created successfully: " << folder_path << endl;
+            return 0; // Success
+        } else {
+            cerr << "Profile folder already exists or could not be created." << endl;
+            return 1; // Already exists or error
+        }
+    } catch (const exception& e) {
+        // Handle any exceptions
+        cerr << "Error creating profile folder: " << e.what() << endl;
+        return -1; // Exception occurred
+    }
+}

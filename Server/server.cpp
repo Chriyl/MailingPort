@@ -1,4 +1,5 @@
 #include "../include/socket_MAN.hh"
+#include "../include/profile_MAN.hh"
 #include <stdio.h>
 #include <winsock2.h>
 #pragma comment(lib, "ws2_32.lib")
@@ -36,17 +37,29 @@ int main()
     }
     printf("[+] Server in ascolto sulla porta %d\n", PORT);
 
+      Profile* p = new Profile(
+        "nome",
+        "cognome",
+        "nome@cognome.it",
+        "pswd"
+    );
+
+    p->create_profile_folder();
+
+
     if(!SOCKETMAN::server_accept(sock, &client_addr)){
         printf("Connessione non accettata");
         return -1;
     }
         
-  
+    /*
     while (true)
     {
 
     }
-    
+    */
+
+  
     closesocket(sock);
     WSACleanup();
     

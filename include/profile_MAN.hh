@@ -25,6 +25,7 @@ class Profile
     Profile(string, string, string, string);
     void add_message(Message*);
     Message* write_message();
+    int create_profile_folder();
 };
 
 #endif
